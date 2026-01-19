@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | NONAMOU CECE GILBERT</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="blog-page">
+
+<header id="main-header">
+    <div class="container header-flex">
+
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.jpg" alt="Logo GN" class="logo-img">
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="index.html#hero">Accueil</a>
+            <a href="index.html#profil">Profil</a>
+            <a href="index.html#competences">Compétences</a>
+            <a href="index.html#projets">Projets</a>
+            <a href="index.html#passions">Passions</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="assets/docs/cv.pdf" class="btn-cv">
+            <span>CV</span>
+            <i data-lucide="download"></i>
+        </a>
+
+    </div>
+</header>
+
+    <main class="container section-padding" style="margin-top: 80px;">
+        <h1 class="hero-title">Jardin d'idées</h1>
+        <p style="margin-bottom: 40px; opacity: 0.7;">Analyses, réflexions et partages sur la finance et le digital.</p>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="finance">Finance</button>
+            <button class="filter-btn" data-filter="tech">Tech</button>
+            <button class="filter-btn" data-filter="design">Design</button>
+        </div>
+
+        <div class="blog-grid" id="blog-posts-container">
+        </div>
+
+
+<section id="contact" class="section-padding">
+    <div class="container contact-container">
+        <div class="contact-left">
+            <h2 class="contact-title">Me contacter</h2>
+            <p class="contact-hook">Un projet ? Une offre d'emploi ? Une collaboration ? Ou juste discuter ? Parlons-en.</p>
+            
+            <div class="contact-methods">
+                <div class="method-item">
+                    <span class="method-label">Email</span>
+                    <a href="mailto:tonadresse@mail.com" class="method-link">tonadresse@mail.com</a>
+                </div>
+                <div class="method-item">
+                    <span class="method-label">WhatsApp</span>
+                    <a href="https://wa.me/tonnumero" class="method-link">Envoyer un message direct</a>
+                </div>
+                <div class="method-socials">
+                    <span class="method-label">Réseaux</span>
+                    <div class="social-icons-row">
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-right">
+            <form action="https://formspree.io/f/ton_id_ici" method="POST" class="contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Nom & Prénom" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="subject" placeholder="Objet">
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Envoyer le message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer">
+    <div class="container footer-flex">
+        <div class="footer-left">
+            <span>&copy; Fait avec passion. Tous droits réservés.</span>
+        </div>
+        <div class="footer-right">
+            <a href="#main-header" class="back-to-top">
+                Aller en haut <i data-lucide="chevron-up"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
