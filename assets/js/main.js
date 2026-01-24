@@ -274,4 +274,37 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+});
+
+
+
+// Gestion du Bouton du Mobile
+
+const mobileBtn = document.querySelector('.mobile-menu-btn');
+const navMenu = document.querySelector('.nav-menu');
+
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        
+        // Change l'icône entre Menu et X
+        const icon = mobileBtn.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+            icon.setAttribute('data-lucide', 'x');
+        } else {
+            icon.setAttribute('data-lucide', 'menu');
+        }
+        lucide.createIcons();
+    });
+}
+
+// Ferme le menu quand on clique sur un lien
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        const icon = mobileBtn.querySelector('i');
+        icon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+    });
 });
