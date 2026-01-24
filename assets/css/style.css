@@ -1132,4 +1132,70 @@ ul {
 
 
 
+/*CORRECTION APPORTÉES 
 
+Au logo pour l'affichage Mobile
+
+/*
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Force l'image à remplir le cercle sans se déformer */
+    display: block;
+}
+
+.logo {
+    width: 50px; /* Ajuste la taille selon tes besoins */
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden; /* Coupe ce qui dépasse du cercle */
+    border: 2px solid var(--accent-color); /* Optionnel : un petit bord pour le faire ressortir */
+}
+
+
+/*
+Au menu
+/*
+
+/* Cache le bouton burger sur PC */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block; /* Affiche le bouton sur mobile */
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Cache le menu à droite */
+        width: 70%;
+        height: 100vh;
+        background: #0a192f; /* Ta couleur sombre */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        transition: 0.3s ease;
+        z-index: 1000;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    /* Quand le menu est ouvert */
+    .nav-menu.active {
+        right: 0;
+    }
+
+    /* On cache le bouton CV sur mobile pour gagner de la place (optionnel) */
+    .btn-cv {
+        display: none;
+    }
+}
