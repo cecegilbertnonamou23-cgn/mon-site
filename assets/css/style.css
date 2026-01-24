@@ -126,65 +126,38 @@ ul {
 /* ============================================================
    CORRECTION LOGO (Cadre Rond)
    ============================================================ */
+/* 1. LE CERCLE EXTÉRIEUR */
 .logo {
-    width: 45px; /* Taille fixe du cercle */
-    height: 45px;
-    background-color: #fff; /* Fond blanc si ton logo a du vide */
-    border-radius: 50%;
-    display: flex;       /* Centre l'image à l'intérieur */
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;    /* Coupe tout ce qui dépasse du cercle */
+    width: 50px;           /* Largeur fixe */
+    height: 50px;          /* Hauteur fixe identique */
+    border-radius: 50%;    /* Forme ronde */
+    overflow: hidden;      /* Coupe tout ce qui dépasse */
+    padding: 0 !important; /* Force zéro marge interne */
     border: 2px solid var(--accent-color);
-    padding: 0;          /* Supprime tout espace interne */
-}
-
-.logo a {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-.logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;   /* Remplit tout l'espace sans déformer */
-    display: block;
-}
-
-/* Effet au survol : le cadre devient bleu */
-.logo a:hover {
-    border-color: var(--accent-color);
-    transform: scale(1.05);
-}
-
-
-/* Supprime tout filtre ou masque sur le logo */
-.logo, .logo a, .logo-img {
-    background: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-    backdrop-filter: none !important;
-    box-shadow: none !important;
-}
-
-/* On s'assure que le cercle du logo est propre */
-.logo {
+    
+    /* Flexbox pour forcer le contenu au centre */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    overflow: hidden; /* Garantit la forme circulaire */
-    background-color: transparent !important;
 }
 
+/* 2. LE LIEN INTERMÉDIAIRE (Le coupable habituel) */
+.logo a {
+    display: block;        /* Transforme le lien en "boîte" */
+    width: 100%;           /* Prend 100% de la largeur du parent */
+    height: 100%;          /* Prend 100% de la hauteur du parent */
+    padding: 0;
+    margin: 0;
+    line-height: 0;        /* Supprime les espaces fantômes du texte */
+}
+
+/* 3. L'IMAGE ELLE-MÊME */
 .logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    mix-blend-mode: normal !important; /* Empêche les fusions de couleurs bizarres */
+    width: 100%;           /* Remplit la largeur */
+    height: 100%;          /* Remplit la hauteur */
+    object-fit: cover;     /* ZOOM : remplit le cadre sans déformer l'image */
+    display: block;        /* Supprime l'espace sous l'image */
+    margin: 0;
 }
 
 /* Ajustement pour mobile : on peut réduire un peu le logo si besoin */
@@ -1227,5 +1200,6 @@ Au menu
         display: none;
     }
 }
+
 
 
