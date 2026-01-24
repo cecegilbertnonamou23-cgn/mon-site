@@ -127,36 +127,35 @@ ul {
    CORRECTION LOGO (Cadre Rond)
    ============================================================ */
 .logo {
-    display: flex;
+    width: 45px; /* Taille fixe du cercle */
+    height: 45px;
+    background-color: #fff; /* Fond blanc si ton logo a du vide */
+    border-radius: 50%;
+    display: flex;       /* Centre l'image à l'intérieur */
     align-items: center;
+    justify-content: center;
+    overflow: hidden;    /* Coupe tout ce qui dépasse du cercle */
+    border: 2px solid var(--accent-color);
+    padding: 0;          /* Supprime tout espace interne */
+}
+
+.logo a {
+    display: block;
+    width: 100%;
     height: 100%;
 }
 
-/* On cible le lien <a> qui est dans la div .logo */
-.logo a {
-    display: block;           /* Important pour appliquer des dimensions */
-    width: 50px;              /* Largeur du cercle */
-    height: 50px;             /* Hauteur du cercle */
-    
-    border-radius: 50%;       /* C'est CE code qui fait le rond parfait */
-    
-    border: 2px solid rgba(255, 255, 255, 0.2); /* Le cadre visible (gris clair) */
-    overflow: hidden;         /* Coupe l'image carrée pour qu'elle reste dans le rond */
-    transition: all 0.3s ease;
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* Remplit tout l'espace sans déformer */
+    display: block;
 }
 
 /* Effet au survol : le cadre devient bleu */
 .logo a:hover {
     border-color: var(--accent-color);
     transform: scale(1.05);
-}
-
-/* L'image à l'intérieur */
-.logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* L'image remplit le rond sans être écrasée */
-    display: block;
 }
 
 /* Ajustement pour mobile : on peut réduire un peu le logo si besoin */
@@ -1199,3 +1198,4 @@ Au menu
         display: none;
     }
 }
+
