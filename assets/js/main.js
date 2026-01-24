@@ -308,3 +308,19 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
         lucide.createIcons();
     });
 });
+
+// Fermer le menu en cliquant n'importe où ailleurs
+document.addEventListener('click', (e) => {
+    // Si le menu est ouvert ET que le clic n'est ni sur le menu, ni sur le bouton burger
+    if (navMenu.classList.contains('active') && 
+        !navMenu.contains(e.target) && 
+        !mobileBtn.contains(e.target)) {
+        
+        navMenu.classList.remove('active');
+        
+        // On remet l'icône burger
+        const icon = mobileBtn.querySelector('i');
+        icon.setAttribute('data-lucide', 'menu');
+        lucide.createIcons();
+    }
+});
