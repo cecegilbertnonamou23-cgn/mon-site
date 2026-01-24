@@ -303,7 +303,50 @@ ul {
 
 
 
+/* Responsive : On passe sur une colonne sous 768px */
+/* --- CORRECTION MOBILE HERO --- */
+@media (max-width: 768px) {
+    .hero-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 50px !important;
+    }
+}
 
+    .hero-grid {
+        display: flex;
+        flex-direction: column-reverse; /* L'image en haut, le texte en bas (optionnel, sinon 'column') */
+        gap: 40px;
+    }
+
+    .hero-content {
+        text-align: center; /* Centre le texte sur mobile */
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem; /* On force une taille raisonnable */
+        line-height: 1.2;
+    }
+
+    .hero-pitch {
+        margin: 0 auto 30px auto; /* Centre le paragraphe */
+    }
+
+    .hero-stats {
+        justify-content: center; /* Centre les stats */
+    }
+
+    .hero-actions {
+        justify-content: center; /* Centre les boutons */
+        flex-wrap: wrap; /* Si l'écran est tout petit, les boutons passent l'un sous l'autre */
+    }
+    
+    /* On s'assure que la section suivante a de l'air */
+    #profil {
+        padding-top: 60px;
+    }
+}
 
 
 
@@ -1196,6 +1239,7 @@ Au menu
         display: none;
     }
 }
+
 
 
 
