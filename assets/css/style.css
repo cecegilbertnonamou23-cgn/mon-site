@@ -301,19 +301,48 @@ ul {
 }
 
 /* Responsive : On passe sur une colonne sous 768px */
+/* --- CORRECTION MOBILE HERO --- */
 @media (max-width: 768px) {
+    .hero-section {
+        height: auto;       /* On arrête de forcer la hauteur écran sur mobile */
+        min-height: 100vh;  /* Au minimum l'écran, mais peut grandir */
+        padding-top: 100px; /* Espace pour le header */
+        padding-bottom: 60px; /* Espace vital en bas pour ne pas toucher la suite */
+        display: block;     /* On enlève le centrage vertical strict */
+    }
+
     .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        margin-top: 40px;
+        display: flex;
+        flex-direction: column-reverse; /* L'image en haut, le texte en bas (optionnel, sinon 'column') */
+        gap: 40px;
     }
+
+    .hero-content {
+        text-align: center; /* Centre le texte sur mobile */
+        padding: 0 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem; /* On force une taille raisonnable */
+        line-height: 1.2;
+    }
+
+    .hero-pitch {
+        margin: 0 auto 30px auto; /* Centre le paragraphe */
+    }
+
+    .hero-stats {
+        justify-content: center; /* Centre les stats */
+    }
+
     .hero-actions {
-        justify-content: center;
+        justify-content: center; /* Centre les boutons */
+        flex-wrap: wrap; /* Si l'écran est tout petit, les boutons passent l'un sous l'autre */
     }
-    .hero-visual {
-        order: -1; /* Image au-dessus du texte sur mobile */
-        max-width: 300px;
-        margin: 0 auto;
+    
+    /* On s'assure que la section suivante a de l'air */
+    #profil {
+        padding-top: 60px;
     }
 }
 
@@ -474,33 +503,64 @@ ul {
     font-size: 28px; cursor: pointer;
 }
 
-/* RESPONSIVE : Mode Vertical (Mobile) */
+
+/* --- TIMELINE MOBILE HORIZONTALE --- */
 @media (max-width: 768px) {
+    /* 1. On garde le conteneur en ligne (ROW) */
     .timeline-items {
-        flex-direction: column; /* Aligne les étapes l'une sous l'autre */
-        align-items: flex-start;
-        padding-left: 50px;
+        flex-direction: row; 
+        align-items: center; /* Centre tout sur la ligne médiane */
+        width: max-content;  /* Important pour le scroll */
+        padding: 0 20px;     /* Marge sur les côtés */
+    }
+
+    /* 2. La ligne reste horizontale */
+    .timeline-line {
+        width: 100%;
+        height: 4px; /* Un peu plus fine sur mobile */
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    /* 3. LES ÉLÉMENTS (La magie opère ici) */
+    .timeline-item {
+        /* On veut voir environ 2 items. Donc chaque item fait ~45% de l'écran */
+        width: 45vw;         
+        min-width: 160px;    /* Sécurité pour les très petits écrans */
+        flex: 0 0 auto;      /* Ne pas rétrécir */
+        
+        /* Réinitialisation des styles verticaux précédents */
+        flex-direction: column; 
+        margin: 0 !important; /* On gère les marges avec top/bottom */
+        text-align: center;
+    }
+
+    /* 4. Gestion Haut / Bas sur mobile */
+    /* On réduit l'écartement par rapport à la ligne centrale pour que ça rentre */
+    .timeline-item.top {
+        margin-bottom: 20px !important; /* Pousse vers le haut */
+        justify-content: flex-end;
+    }
+
+    .timeline-item.bottom {
+        margin-top: 20px !important;    /* Pousse vers le bas */
+        justify-content: flex-start;
+    }
+
+    /* 5. Ajustement des connecteurs et textes */
+    .timeline-connector {
+        width: 2px;
+        height: 15px; /* Connecteur plus court pour gagner de la place */
+        margin: 5px auto; /* Centré */
+    }
+
+    .titre-etape {
+        font-size: 0.9rem; /* Texte un peu plus petit */
     }
     
-    .timeline-line {
-        width: 8px; /* La barre devient verticale */
-        height: 100%;
-        left: 30px;
-        top: 0;
-        transform: none;
-    }
-
-    .timeline-item {
-        flex-direction: row; /* Aligne texte et connecteur horizontalement */
-        width: 100%;
-        text-align: left;
-        margin: 20px 0 !important;
-    }
-
-    .timeline-connector {
-        width: 30px;
-        height: 2px;
-        margin: 0 15px 0 0;
+    .période {
+        font-size: 0.7rem;
     }
 }
 
@@ -1200,6 +1260,7 @@ Au menu
         display: none;
     }
 }
+
 
 
 
