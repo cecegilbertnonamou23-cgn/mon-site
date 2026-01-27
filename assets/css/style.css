@@ -1,116 +1,80 @@
 /* ============================================================
-   1. IMPORTATION DES POLICES (Le Duo Autoritaire)
+   1. IMPORTATION DES POLICES & VARIABLES
    ============================================================ */
-/* Import de Inter (Titres) et Plus Jakarta Sans (Corps) via Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
-/* ============================================================
-   2. VARIABLES DE DESIGN (Design System)
-   ============================================================ */
 :root {
-    /* Couleurs "Deep Corporate" */
-    --bg-color: #0F172A;        /* Bleu Ardoise Nuit [cite: 73, 94] */
-    --text-primary: #F8F9FA;    /* Blanc Glacé [cite: 74, 94] */
-    --accent-color: #3B82F6;    /* Bleu Électrique  */
-    --surface-color: #1E293B;   /* Gris Ardoise pour les cartes [cite: 77, 94] */
+    /* Couleurs */
+    --bg-color: #0F172A;        /* Bleu Nuit */
+    --text-primary: #F8F9FA;    /* Blanc Glacé */
+    --accent-color: #3B82F6;    /* Bleu Électrique */
+    --surface-color: #1E293B;   /* Gris Ardoise */
     
     /* Typographie */
-    --font-titles: 'Inter', sans-serif;           /* [cite: 80, 94] */
-    --font-body: 'Plus Jakarta Sans', sans-serif; /* [cite: 84, 94] */
+    --font-titles: 'Inter', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
 
     /* Paramètres Graphiques */
-    --radius: 12px;             /* Rayon standard Apple [cite: 89, 94] */
-    --border-width: 1.5px;      /* Épaisseur des traits [cite: 90] */
-    --glass-bg: rgba(30, 41, 59, 0.7); /* Fond semi-transparent [cite: 145] */
-    --glass-blur: blur(12px);          /* Flou d'arrière-plan [cite: 145] */
+    --radius: 12px;
+    --border-width: 1.5px;
+    --glass-bg: rgba(15, 23, 42, 0.85); /* Fond header plus opaque pour lisibilité */
+    --glass-blur: blur(12px);
 }
 
 /* ============================================================
-   3. RÉGLAGES DE BASE (Reset & Global)
+   2. RÉGLAGES GLOBAUX (Reset)
    ============================================================ */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-    scroll-behavior: smooth; /* Pour un défilement fluide vers les sections */
-}
+html { scroll-behavior: smooth; }
 
 body {
-    background-color: var(--bg-color); /* [cite: 73, 94] */
-    color: var(--text-primary);        /* [cite: 74, 94] */
-    font-family: var(--font-body);     /* [cite: 84, 94] */
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased; /* Lissage Dark Mode  */
-    overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
-    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hiérarchie des Titres */
 h1, h2, h3, h4 {
     font-family: var(--font-titles);
-    font-weight: 900;            /* Poids Black [cite: 80] */
-    letter-spacing: -0.02em;     /* Aspect compact [cite: 155] */
-    text-transform: uppercase;   /* Pour l'aspect autoritaire */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
     line-height: 1.1;
 }
 
-/* Conteneur principal pour centrer le contenu */
+a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+ul { list-style: none; }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Suppression des styles par défaut des liens */
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: 0.3s ease;
-}
-
-ul {
-    list-style: none;
-}
-
-
-/* Style propre pour tous les titres de section du site */
 .section-title {
     font-size: 2.5rem;
     font-weight: 800;
-    text-align: center;      /* Force le centrage */
-    margin-bottom: 60px;     /* Espace constant avec le contenu */
-    width: 100%;             /* Prend toute la largeur */
-    color: #ffffff;
-    position: relative;
-    display: block;          /* Empêche le titre de subir le flex de la timeline */
-}
-/* On s'assure que le container de la timeline ne gène pas le titre */
-.timeline-container {
-    clear: both;             /* Casse tout flottement résiduel */
-    margin-top: 40px;
-    position: relative;
+    text-align: center;
+    margin-bottom: 60px;
     width: 100%;
+    color: #ffffff;
+    padding-top: 40px; /* Espace pour ancre */
 }
-
 
 /* ============================================================
-   4. HEADER & NAVIGATION (Glassmorphism)
+   3. HEADER & NAVIGATION (Fixe)
    ============================================================ */
 #main-header {
-    position: fixed;            /* Il reste collé en haut */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;              /* Toujours au-dessus du reste */
-    background: var(--glass-bg);/* Couleur semi-transparente */
-    backdrop-filter: var(--glass-blur); /* L'effet de flou magique */
-    -webkit-backdrop-filter: var(--glass-blur); /* Compatibilité Safari */
-    border-bottom: var(--border-width) solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     height: 80px;
     display: flex;
     align-items: center;
@@ -118,1133 +82,360 @@ ul {
 
 .header-flex {
     display: flex;
-    justify-content: space-between; /* Espace entre Logo - Menu - Bouton */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
-/* ============================================================
-   CORRECTION LOGO (Cadre Rond)
-   ============================================================ */
-/* 1. LE CERCLE EXTÉRIEUR */
+/* --- LOGO CORRECTIF --- */
 .logo {
-    width: 50px;           /* Largeur fixe */
-    height: 50px;          /* Hauteur fixe identique */
-    border-radius: 50%;    /* Forme ronde */
-    overflow: hidden;      /* Coupe tout ce qui dépasse */
-    padding: 0 !important; /* Force zéro marge interne */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden; /* Coupe tout ce qui dépasse */
     border: 2px solid var(--accent-color);
-    
-    /* Flexbox pour forcer le contenu au centre */
-    display: flex;
+    display: flex;      /* Centre le contenu */
     align-items: center;
     justify-content: center;
-}
-
-/* 2. LE LIEN INTERMÉDIAIRE (Le coupable habituel) */
-.logo a {
-    display: block;        /* Transforme le lien en "boîte" */
-    width: 100%;           /* Prend 100% de la largeur du parent */
-    height: 100%;          /* Prend 100% de la hauteur du parent */
     padding: 0;
-    margin: 0;
-    line-height: 0;        /* Supprime les espaces fantômes du texte */
+    background: transparent;
 }
 
-/* 3. L'IMAGE ELLE-MÊME */
+.logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0; margin: 0;
+}
+
 .logo-img {
-    width: 100%;           /* Remplit la largeur */
-    height: 100%;          /* Remplit la hauteur */
-    object-fit: cover;     /* ZOOM : remplit le cadre sans déformer l'image */
-    display: block;        /* Supprime l'espace sous l'image */
-    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Remplit le rond sans déformer */
+    display: block;
 }
 
-/* Ajustement pour mobile : on peut réduire un peu le logo si besoin */
-@media (max-width: 768px) {
-    .logo-img {
-        height: 32px;
-    }
-}
+/* Menu Desktop */
+.nav-menu { display: flex; gap: 30px; }
+.nav-menu a { font-size: 0.9rem; font-weight: 500; opacity: 0.8; }
+.nav-menu a:hover { opacity: 1; color: var(--accent-color); }
 
-/* Liens du Menu */
-.nav-menu {
-    display: flex;
-    gap: 30px; /* Espace entre les liens */
-}
+.mobile-menu-btn { display: none; } /* Caché sur PC */
 
-.nav-menu a {
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
-}
-
-.nav-menu a:hover {
-    opacity: 1;
-    color: var(--accent-color);
-}
-
-/* Le Bouton CV */
 .btn-cv {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--accent-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: var(--radius); /* 12px selon tes variables */
+    display: flex; align-items: center; gap: 10px;
+    background: var(--accent-color); color: white;
+    padding: 10px 20px; border-radius: var(--radius);
     font-weight: 600;
-    transition: transform 0.2s ease;
 }
-
-.btn-cv:hover {
-    transform: translateY(-2px); /* Petit effet de levée au survol */
-    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-}
-
-.btn-cv lucide-icon {
-    width: 18px;
-    height: 18px;
-}
-
-
-
 
 /* ============================================================
-   5. SECTION HERO (100vh)
+   4. SECTION HERO (PC par défaut)
    ============================================================ */
 .hero-section {
-    height: auto !important; /* Annule le 100vh qui bloque tout */
-    min-height: 100vh; 
-    padding-bottom: 100px !important; /* Pousse physiquement la section suivante */
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    align-items: center; /* Centre verticalement sur PC */
+    /* FIX PROBLÈME HEADER : On ajoute un gros padding en haut */
+    padding-top: 130px; 
+    padding-bottom: 80px;
 }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr; /* La gauche est plus large */
+    /* FIX PC : Image à droite, texte à gauche */
+    grid-template-columns: 1.2fr 0.8fr; 
     gap: 60px;
     align-items: center;
+    width: 100%;
 }
 
-/* Typographie XL demandée */
 .hero-name {
     color: var(--accent-color);
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 10px;
+    display: block; /* S'assure qu'il est visible */
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem); /* S'adapte à la taille de l'écran */
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
     margin-bottom: 25px;
 }
 
 .hero-pitch {
     max-width: 500px;
     margin-bottom: 35px;
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
 .hero-stats {
-    display: flex;
-    gap: 20px;
+    display: flex; gap: 20px;
     margin-top: 20px;
-    font-size: 0.9rem;
-    color: rgba(248, 249, 250, 0.6);
+    font-size: 0.9rem; color: rgba(248, 249, 250, 0.6);
 }
 
-/* Boutons */
-.hero-actions {
-    display: flex;
-    gap: 15px;
-}
+.hero-actions { display: flex; gap: 15px; }
 
 .btn-primary {
     background: var(--accent-color);
-    padding: 15px 30px;
-    border-radius: var(--radius);
+    padding: 15px 30px; border-radius: var(--radius);
     font-weight: 700;
 }
-
 .btn-secondary {
-    border: var(--border-width) solid rgba(255, 255, 255, 0.2);
-    padding: 15px 30px;
-    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 30px; border-radius: var(--radius);
 }
 
-/* Visuel Droite */
-.visual-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1/1;
-}
-
+/* Visuel */
+.visual-container { position: relative; width: 100%; aspect-ratio: 1/1; }
 .portrait-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 24px;
-    position: relative;
-    z-index: 2;
-    filter: grayscale(20%); /* Effet corporate */
+    width: 100%; height: 100%; object-fit: cover;
+    border-radius: 24px; position: relative; z-index: 2;
+    filter: grayscale(20%);
 }
-
 .blob-bg {
-    position: absolute;
-    top: -10%;
-    right: -10%;
-    width: 120%;
-    height: 120%;
+    position: absolute; top: -10%; right: -10%;
+    width: 120%; height: 120%;
     background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
     z-index: 1;
 }
 
-
-
-/* Responsive : On passe sur une colonne sous 768px */
-/* --- CORRECTION MOBILE HERO --- */
-@media (max-width: 768px) {
-    .hero-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 50px !important;
-    }
-}
-
-    .hero-grid {
-        display: flex;
-        flex-direction: column-reverse; /* L'image en haut, le texte en bas (optionnel, sinon 'column') */
-        gap: 40px;
-    }
-
-    .hero-content {
-        text-align: center; /* Centre le texte sur mobile */
-        padding: 0 20px;
-    }
-
-    .hero-title {
-        font-size: 2.5rem; /* On force une taille raisonnable */
-        line-height: 1.2;
-    }
-
-    .hero-pitch {
-        margin: 0 auto 30px auto; /* Centre le paragraphe */
-    }
-
-    .hero-stats {
-        justify-content: center; /* Centre les stats */
-    }
-
-    .hero-actions {
-        justify-content: center; /* Centre les boutons */
-        flex-wrap: wrap; /* Si l'écran est tout petit, les boutons passent l'un sous l'autre */
-    }
-    
-    /* On s'assure que la section suivante a de l'air */
-    #profil {
-        padding-top: 60px;
-    }
-}
-
-
-
 /* ============================================================
-   6. TIMELINE INTERACTIVE
+   5. TIMELINE (PC par défaut)
    ============================================================ */
-/* Container de la timeline */
 .timeline-container {
     position: relative;
-    padding: 100px 0;
-    margin-top: 50px;
-    overflow-x: auto; /* Permet de scroller si trop d'étapes */
+    padding: 80px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 
-/* La Barre de Force (Monochrome & Épaisse) */
-/* 1. Le conteneur doit permettre le débordement sans casser */
 .timeline-items {
     display: flex;
-    position: relative;
     justify-content: space-around;
-    z-index: 2;
-    padding: 0 50px; /* Un peu d'air aux extrémités */
-    width: max-content; /* INDISPENSABLE : La div s'étire selon le nombre d'items */
-    min-width: 100%;    /* Mais fait au moins la taille de l'écran */
+    align-items: center;
+    position: relative;
+    width: max-content;
+    min-width: 100%;
+    padding: 0 50px;
 }
 
-/* 2. La barre doit suivre la largeur du parent (.timeline-items) */
 .timeline-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%; /* Ici, 100% signifie maintenant la largeur de .timeline-items */
-    height: 8px;
+    position: absolute; top: 50%; left: 0;
+    width: 100%; height: 6px;
     background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-50%);
+    transform: translateY(-50%); z-index: 1;
     border-radius: 4px;
-    z-index: 1;
 }
 
-/* 3. On force chaque item à garder sa place */
 .timeline-item {
-    flex: 0 0 350px; /* Ne rétrécit pas, ne grandit pas, fait 350px de large */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    text-align: center;
-    position: relative;
-}
-
-
-/* Style de chaque bloc (Période + Titre) */
-.timeline-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
+    flex: 0 0 300px; /* Largeur PC */
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    cursor: pointer; position: relative; z-index: 2;
     transition: transform 0.3s ease;
-    width: 250px;
-    text-align: center;
 }
 
-.timeline-item:hover {
-    transform: scale(1.05);
-}
+.timeline-item:hover { transform: scale(1.05); }
 
-.période {
-    font-size: 0.85rem;
-    color: #888; /* Gris discret */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+/* Alternance PC */
+.timeline-item.top { justify-content: flex-end; margin-bottom: 60px; }
+.timeline-item.bottom { justify-content: flex-start; margin-top: 60px; }
 
-.titre-etape {
-    font-size: 1.2rem;
-    color: #fff;
-    font-weight: 700;
-    margin-top: 5px;
-}
-
-/* Les Connecteurs (petites lignes vers la barre) */
 .timeline-connector {
-    width: 2px;
-    height: 30px;
-    background: var(--accent-color); /* Ta couleur bleue */
-    margin: 10px 0;
+    width: 2px; height: 30px;
+    background: var(--accent-color); margin: 10px 0;
 }
 
-.timeline-item {
-    min-width: 300px; /* Garantit que chaque étape a son espace vital, peu importe le nombre */
-    flex-shrink: 0;   /* Empêche les blocs de rétrécir */
-}
-
-.timeline-container {
-    position: relative;
-    padding: 100px 0;
-    overflow-x: auto;
-    
-    /* Masque de transparence progressif */
-    -webkit-mask-image: linear-gradient(to right, 
-        transparent, 
-        black 10%, 
-        black 90%, 
-        transparent
-    );
-    mask-image: linear-gradient(to right, 
-        transparent, 
-        black 10%, 
-        black 90%, 
-        transparent
-    );
-
-    /* Cache la barre de défilement standard pour un look plus propre */
-    scrollbar-width: none; /* Firefox */
-}
-
-.timeline-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
-}
-
-/* Alternance Top / Bottom */
-.timeline-item.top { justify-content: flex-end; margin-bottom: 40px; }
-.timeline-item.bottom { justify-content: flex-start; margin-top: 40px; }
-
-/* --- STYLE DE LA MODALE --- */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 10000; /* Très haut pour être devant tout */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-
-    /* CES 3 LIGNES FONT LE CENTRAGE */
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    width: 90%;
-    max-width: 700px;
-    margin: 0; /* Important : enlever les marges auto */
-    background: #1a1a1a;
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.close-modal {
-    position: absolute;
-    right: 20px; top: 10px;
-    font-size: 28px; cursor: pointer;
-}
-
-
-/* --- TIMELINE MOBILE HORIZONTALE --- */
-@media (max-width: 768px) {
-    /* On force le défilement horizontal */
-    .timeline-container {
-        overflow-x: scroll !important;
-        display: block !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .timeline-items {
-        display: flex !important;
-        flex-direction: row !important; /* INTERDIT LE VERTICAL */
-        flex-wrap: nowrap !important;   /* INTERDIT LE RETOUR À LA LIGNE */
-        align-items: center !important;
-        width: max-content !important;
-        padding: 50px 0 !important;
-    }
-
-    .timeline-item {
-        flex: 0 0 280px !important; /* Chaque étape fera 280px de large */
-        margin: 0 10px !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-
-    /* La ligne reste au milieu */
-    .timeline-line {
-        display: block !important;
-        position: absolute !important;
-        top: 50% !important;
-        width: 100% !important;
-        height: 6px !important;
-        transform: translateY(-50%) !important;
-    }
-
-    /* Alternance simple */
-    .timeline-item.top { transform: translateY(-30px); }
-    .timeline-item.bottom { transform: translateY(30px); }
-}
-
-
-
+.titre-etape { font-size: 1.2rem; margin-top: 5px; }
+.période { font-size: 0.85rem; color: #888; text-transform: uppercase; }
 
 /* ============================================================
-   7. FENÊTRES MODALES (Glassmorphism & UX)
-   ============================================================ */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.8); /* Fond sombre derrière */
-    display: none;      /* Caché par défaut */
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    backdrop-filter: blur(8px); /* Flou léger sur l'arrière-plan du site */
-}
-
-.modal-content {
-    background: var(--glass-bg); /* rgba(30, 41, 59, 0.7) via tes variables */
-    backdrop-filter: var(--glass-blur); /* blur(12px) */
-    -webkit-backdrop-filter: var(--glass-blur);
-    padding: 40px;
-    border-radius: 24px; /* Plus arrondi pour l'aspect popup */
-    border: var(--border-width) solid rgba(255, 255, 255, 0.1);
-    max-width: 600px;
-    width: 90%;
-    position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.modal-close:hover { opacity: 1; }
-
-/* Classe pour verrouiller le scroll du site */
-.no-scroll {
-    overflow: hidden;
-}
-
-
-
-
-
-/* ============================================================
-   8. SECTION COMPÉTENCES (Jauges)
+   6. COMPÉTENCES & PROJETS
    ============================================================ */
 .competence-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
-    gap: 80px; /* Grand espace entre les deux colonnes */
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
 }
-
 .col-title {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: var(--accent-color);
-    border-bottom: var(--border-width) solid rgba(59, 130, 246, 0.2);
-    padding-bottom: 10px;
+    color: var(--accent-color); margin-bottom: 20px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
     display: inline-block;
 }
-
 .skill-item {
-    display: flex;
-    justify-content: space-between; /* Nom à gauche, points à droite */
-    align-items: center;
-    padding: 15px 20px;
-    border-radius: var(--radius);
-    margin-bottom: 10px;
-    transition: 0.3s ease;
-    border: 1px solid transparent; /* Pour éviter le saut au survol */
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 15px; margin-bottom: 8px;
+    border-radius: 8px; transition: 0.3s;
 }
+.skill-item:hover { background: var(--surface-color); }
+.skill-dots { display: flex; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.filled { background: var(--accent-color); box-shadow: 0 0 5px var(--accent-color); }
+.dot.empty { background: rgba(255, 255, 255, 0.1); }
 
-/* Effet Hover demandé : Mise en surbrillance */
-.skill-item:hover {
-    background: var(--surface-color);
-    border-color: rgba(255, 255, 255, 0.05);
-    transform: translateX(5px); /* Petit mouvement vers la droite */
-}
-
-.skill-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.skill-dots {
-    display: flex;
-    gap: 8px; /* Espace entre les points */
-}
-
-/* Le point de base */
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-/* Point rempli (Niveau acquis) */
-.dot.filled {
-    background-color: var(--accent-color);
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* Lueur néon */
-}
-
-/* Point vide (Niveau restant) */
-.dot.empty {
-    background-color: rgba(255, 255, 255, 0.1); /* Gris sombre */
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .competence-grid {
-        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
-        gap: 40px;
-    }
-}
-
-
-
-
-/* ============================================================
-   9. GRILLE DE PROJETS (Cards)
-   ============================================================ */
+/* Slider Projets */
 .projets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adaptatif automatique */
-    gap: 30px;
+    display: flex; gap: 25px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 20px 5px; scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
-
 .projet-card {
+    flex: 0 0 350px; /* Largeur carte PC */
     background: var(--surface-color);
-    border-radius: var(--radius); /* 12px */
-    overflow: hidden;
-    border: var(--border-width) solid rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden; scroll-snap-align: start;
+    transition: transform 0.3s ease;
 }
+.projet-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
 
-/* Effet de survol sur la carte */
-.projet-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-color);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.card-image {
-    position: relative;
-    height: 220px;
-    background: #000; /* Fond noir en attendant l'image */
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-    transition: 0.4s;
-}
-
-.projet-card:hover .card-image img {
-    opacity: 1;
-    transform: scale(1.05);
-}
-
-/* Le Tag de catégorie */
+.card-image { height: 200px; background: #000; overflow: hidden; position: relative; }
+.card-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.projet-card:hover .card-image img { transform: scale(1.05); opacity: 0.8; }
 .category-tag {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--accent-color);
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 20px;
-    z-index: 2;
+    position: absolute; top: 10px; right: 10px;
+    background: var(--accent-color); color: white;
+    padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
 }
-
-.card-content {
-    padding: 25px;
-}
-
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
-}
-
-.card-header i {
-    color: var(--accent-color);
-    width: 24px;
-}
-
-.card-header h3 {
-    text-transform: none; /* Plus moderne pour les titres de projets */
-    font-size: 1.25rem;
-}
-
-.card-footer {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--accent-color);
-}
-
-
-
-
+.card-content { padding: 20px; }
+.card-header h3 { font-size: 1.1rem; margin-bottom: 5px; }
 
 /* ============================================================
-   10. SECTION PASSIONS (Minimalisme)
+   7. BLOG & CONTACT
    ============================================================ */
-.passions-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 colonnes */
-    gap: 20px;
-    max-width: 800px; /* On centre la grille pour garder le minimalisme */
-    margin: 0 auto;
+.blog-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;
+}
+.blog-card {
+    background: var(--surface-color); padding: 25px;
+    border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.05);
 }
 
-.passion-card {
-    background: var(--surface-color);
-    padding: 30px;
-    border-radius: var(--radius);
-    border: var(--border-width) solid rgba(255, 255, 255, 0.05);
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-/* Micro-animation de zoom demandée */
-.passion-card:hover {
-    transform: scale(1.03);
-    border-color: var(--accent-color);
-}
-
-.passion-icon {
-    color: var(--accent-color);
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-}
-
-.passion-icon i {
-    width: 32px;
-    height: 32px;
-}
-
-.passion-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    text-transform: none;
-}
-
-.passion-card p {
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    .passions-grid {
-        grid-template-columns: 1fr; /* 1 seule colonne sur petit mobile */
-    }
-}
-.section-padding {
-    padding: 100px 0;
-}
-
-
-
-
-
-/* ============================================================
-   11. BLOG PREVIEW
-   ============================================================ */
-
-/* Blog Preview */
-.section-header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.blog-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.blog-mini-card {
-    background: var(--surface-color);
-    padding: 30px;
-    border-radius: var(--radius);
-    border-left: 4px solid var(--accent-color); /* Rappel couleur action */
-}
-
-
-
-
-
-
-/* ============================================================
-   11. CONTACT (50/50) & FOOTER
-   ============================================================ */
-
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 50/50 desktop */
-    gap: 80px;
-    align-items: start;
-}
-
-/* Bloc Gauche */
-.contact-title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.contact-hook {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    opacity: 0.8;
-}
-
-.method-item {
-    margin-bottom: 25px;
-    display: flex;
-    flex-direction: column;
-}
-
-.method-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent-color);
-    margin-bottom: 5px;
-    font-weight: 700;
-}
-
-.method-link {
-    font-size: 1.2rem;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.method-link:hover {
-    color: var(--accent-color);
-}
-
-.social-icons-row {
-    display: flex;
-    gap: 20px;
-    margin-top: 10px;
-}
-
-.social-icons-row i {
-    width: 24px; 
-    height: 24px;
-    stroke-width: 1.5px; /* Style Line Art */
-    transition: transform 0.3s;
-}
-
-.social-icons-row a:hover i {
-    transform: translateY(-3px);
-    color: var(--accent-color);
-}
-
-/* Bloc Droite (Formulaire épuré) */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
+.contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
 .contact-form input, .contact-form textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 5px;
-    color: white;
-    font-family: var(--font-body);
-    transition: border-color 0.3s;
-}
-
-.contact-form input:focus, .contact-form textarea:focus {
-    outline: none;
-    border-bottom-color: var(--accent-color);
+    width: 100%; background: transparent; border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 0; color: white; margin-bottom: 20px;
 }
 
 /* Footer */
-.main-footer {
-    padding: 40px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 80px;
+.main-footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 80px; font-size: 0.9rem; opacity: 0.7; }
+.footer-flex { display: flex; justify-content: space-between; }
+
+/* Modale */
+.modal {
+    display: none; position: fixed; z-index: 9999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
+    justify-content: center; align-items: center;
 }
-
-.footer-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    opacity: 0.7;
+.modal-content {
+    background: #1a1a1a; padding: 30px; border-radius: 15px;
+    width: 90%; max-width: 600px; position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
 }
-
-.back-to-top {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.3s;
-}
-
-.back-to-top:hover {
-    color: var(--accent-color);
-}
-
-/* RESPONSIVE MOBILE */
-@media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr; /* Empilement */
-        gap: 50px;
-        text-align: center;
-    }
-    
-    .contact-title { text-align: center; }
-    
-    .social-icons-row {
-        justify-content: center;
-    }
-    
-    .footer-flex {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
-
-
-
+.close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; }
 
 
 /* ============================================================
-   12. BLOG & FILTRAGE
+   8. RESPONSIVE MOBILE (CORRECTIONS CRITIQUES)
    ============================================================ */
-.filter-bar {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    background: var(--surface-color);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 30px; /* Plus organique pour les boutons de tri */
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.filter-btn.active, .filter-btn:hover {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
-}
-
-.blog-card {
-    background: var(--surface-color);
-    padding: 30px;
-    border-radius: var(--radius);
-    border: var(--border-width) solid rgba(255, 255, 255, 0.05);
-    transition: all 0.4s ease;
-}
-
-/* Animation d'entrée pour le filtrage */
-.blog-card.hide {
-    display: none;
-}
-
-.blog-card.show {
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.blog-card-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.blog-category {
-    color: var(--accent-color);
-    text-transform: uppercase;
-}
-
-
-
-
-
-/* --- SLIDER PROJETS --- */
-.slider-wrapper {
-    position: relative; /* Référence pour les boutons */
-    display: flex;
-    align-items: center;
-}
-
-.projets-grid {
-    display: flex; /* Force la ligne unique */
-    gap: 30px;
-    overflow-x: auto; /* Active le scroll */
-    scroll-snap-type: x mandatory; /* Magnétisme */
-    padding: 20px 5px;
-    scrollbar-width: none; /* Cache scrollbar Firefox */
-    width: 100%;    
-    /* AJOUTE CECI POUR L'EFFET DE BORD FLOU */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-}
-
-.projets-grid::-webkit-scrollbar {
-    display: none; /* Cache scrollbar Chrome */
-}
-
-.projet-card {
-    flex: 0 0 350px; /* Largeur fixe de chaque carte */
-    scroll-snap-align: start;
-}
-
-/* Style des boutons fléchés */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(30, 30, 30, 0.8); /* Fond sombre semi-transparent */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-}
-
-.slider-btn:hover {
-    background: var(--accent-color); /* Ta couleur principale */
-    transform: translateY(-50%) scale(1.1);
-}
-
-.slider-btn.prev { left: -25px; }
-.slider-btn.next { right: -25px; }
-
-/* Mobile : On cache les flèches car on swipe avec le doigt */
 @media (max-width: 768px) {
-    .slider-btn { display: none; }
-    .projet-card { flex: 0 0 280px; } /* Cartes un peu plus petites sur mobile */
-}
 
-
-
-
-
-
-
-/* --- SLIDER PASSIONS --- */
-.passions-grid {
-    display: flex;
-    gap: 25px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 20px 5px;
-    scrollbar-width: none;
-    width: 100%;
-    /* Effet de bords flous identique aux projets */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-}
-
-.passions-grid::-webkit-scrollbar {
-    display: none;
-}
-
-.passion-card {
-    flex: 0 0 300px; /* Un peu plus petit que les projets pour varier */
-    scroll-snap-align: start;
-    /* Garde ton style de carte existant (background, border, etc.) */
-}
-
-
-
-
-
-
-/*CORRECTION APPORTÉES 
-
-Au logo pour l'affichage Mobile
-
-/*
-
-.logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Force l'image à remplir le cercle sans se déformer */
-    display: block;
-}
-
-.logo {
-    width: 50px; /* Ajuste la taille selon tes besoins */
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden; /* Coupe ce qui dépasse du cercle */
-    border: 2px solid var(--accent-color); /* Optionnel : un petit bord pour le faire ressortir */
-}
-
-
-/*
-Au menu
-/*
-
-/* Cache le bouton burger sur PC */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .mobile-menu-btn {
-        display: block; /* Affiche le bouton sur mobile */
-    }
-
+    /* --- 8.1 HEADER & NAV --- */
+    .mobile-menu-btn { display: block; background: none; border: none; color: white; font-size: 1.5rem; }
     .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Cache le menu à droite */
-        width: 70%;
-        height: 100vh;
-        background: #0a192f; /* Ta couleur sombre */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        transition: 0.3s ease;
-        z-index: 1000;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        position: fixed; top: 80px; right: -100%;
+        width: 100%; height: calc(100vh - 80px);
+        background: var(--bg-color);
+        flex-direction: column; align-items: center; justify-content: start;
+        padding-top: 50px; gap: 30px; transition: 0.3s;
+    }
+    .nav-menu.active { right: 0; }
+    .btn-cv { display: none; } /* On cache le CV sur mobile */
+
+    /* --- 8.2 HERO SECTION (Correction Layout) --- */
+    .hero-section {
+        height: auto; min-height: 100vh;
+        padding-top: 120px; /* Plus d'espace sous le header */
+        padding-bottom: 60px;
+        display: block; /* On enlève le flex vertical strict */
     }
 
-    /* Quand le menu est ouvert */
-    .nav-menu.active {
-        right: 0;
+    .hero-grid {
+        display: flex; /* On casse la Grid PC */
+        flex-direction: column-reverse; /* Texte en bas, Image en haut */
+        gap: 30px;
     }
 
-    /* On cache le bouton CV sur mobile pour gagner de la place (optionnel) */
-    .btn-cv {
-        display: none;
+    .hero-content { text-align: center; padding: 0 10px; }
+    .hero-actions { justify-content: center; }
+    
+    .visual-container {
+        width: 80%; /* Image un peu plus petite sur mobile */
+        margin: 0 auto;
     }
+
+    /* --- 8.3 TIMELINE (Densité & Scroll Horizontal) --- */
+    .timeline-container {
+        padding: 50px 0;
+        overflow-x: scroll; /* Force le scroll */
+    }
+
+    .timeline-items {
+        display: flex; 
+        flex-direction: row; /* Force horizontal */
+        width: max-content;
+        padding: 0 20px;
+    }
+
+    .timeline-item {
+        /* FIX : Largeur relative pour voir 1.5 items (60% de l'écran) */
+        flex: 0 0 60vw; 
+        margin: 0 10px;
+        /* On réinitialise les marges verticales PC */
+        margin-top: 0 !important; 
+        margin-bottom: 0 !important;
+    }
+
+    /* Ajustement hauteur alternée pour style */
+    .timeline-item.top { transform: translateY(-20px); }
+    .timeline-item.bottom { transform: translateY(20px); }
+
+    .timeline-line { height: 4px; } /* Ligne plus fine */
+    .titre-etape { font-size: 1rem; } /* Texte plus petit */
+
+
+    /* --- 8.4 PROJETS (Cartes Compactes) --- */
+    .projet-card {
+        flex: 0 0 260px; /* Carte moins large */
+    }
+    .card-image {
+        height: 150px; /* Image moins haute */
+    }
+    .card-content {
+        padding: 15px; /* Moins de marge interne */
+    }
+    .card-header h3 { font-size: 1rem; }
+
+
+    /* --- 8.5 BLOG & DIVERS --- */
+    /* Centrage forcé pour le blog sur mobile */
+    .blog-page .container, .section-title {
+        text-align: center;
+        display: flex; flex-direction: column; align-items: center;
+    }
+    
+    .blog-grid { display: flex; flex-direction: column; gap: 20px; }
+    .blog-card { width: 100%; text-align: left; } /* Le contenu de la carte reste à gauche */
+
+    /* Contact & Footer */
+    .contact-container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .contact-form { text-align: left; }
+    .footer-flex { flex-direction: column; gap: 20px; text-align: center; }
+    .competence-grid { grid-template-columns: 1fr; gap: 30px; }
 }
-
-
-
-
-
-
-
-
-
