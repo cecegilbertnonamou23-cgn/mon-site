@@ -1,9 +1,10 @@
 backend:
   name: github
-  repo: ton-nom-utilisateur/ton-depot-github # À remplacer par le tien
-  branch: main
+  repo: cecegilbertnonamou23-cgn/mon-site          # ← Remplace par ton username/repo réel (majuscules sensibles)
+  branch: main                     # ou master si tu utilises ce nom
+  squash_merges: true              # Optionnel mais utile pour commits propres
 
-media_folder: "assets/images/blog"
+media_folder: "assets/images/blog"   # Pour uploads images articles
 public_folder: "/assets/images/blog"
 
 collections:
@@ -15,6 +16,6 @@ collections:
     fields:
       - {label: "Titre", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Catégorie", name: "category", widget: "select", options: ["finance", "tech", "design"]}
+      - {label: "Catégorie", name: "category", widget: "select", options: ["finance", "gestion","tech", "divers"]}  # ← Aligné sur specs CDC (Gestion au lieu de tech ?)
       - {label: "Description courte", name: "description", widget: "text"}
       - {label: "Corps de l'article", name: "body", widget: "markdown"}
