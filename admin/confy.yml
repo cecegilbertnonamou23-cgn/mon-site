@@ -1,8 +1,9 @@
 backend:
   name: github
-  repo: cecegilbertnonamou23-cgn/mon-site          # ← Remplace par ton username/repo réel (majuscules sensibles)
-  branch: main                     # ou master si tu utilises ce nom
-  squash_merges: true              # Optionnel mais utile pour commits propres
+  repo: NONAMOU/portfolio          # ← ton username + nom du repo exact
+  branch: main
+  base_url: https://nonamou.github.io/portfolio          # ← URL publique de ton site GitHub Pages
+  auth_endpoint: https://portfolio-decap-proxy.toncompte.workers.dev/api/auth/github   # ← IMPORTANT : ton URL Worker + /api/auth/github
 
 media_folder: "assets/images/blog"   # Pour uploads images articles
 public_folder: "/assets/images/blog"
@@ -19,3 +20,4 @@ collections:
       - {label: "Catégorie", name: "category", widget: "select", options: ["finance", "gestion","tech", "divers"]}  # ← Aligné sur specs CDC (Gestion au lieu de tech ?)
       - {label: "Description courte", name: "description", widget: "text"}
       - {label: "Corps de l'article", name: "body", widget: "markdown"}
+
