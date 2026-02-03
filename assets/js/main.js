@@ -86,18 +86,21 @@ const contents = {
 
 
 
-// SYSTÈME DE FILTRAGE DU BLOG
+// SYSTÈME DE FILTRAGE DU BLOG + GESTION DES FLÈCHES SCROLLABLES
 document.addEventListener('DOMContentLoaded', () => {
+    // ────────────────────────────────────────────────
+    // 1. Filtrage du blog (code que tu avais déjà)
+    // ────────────────────────────────────────────────
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const blogCards = document.querySelectorAll('.blog-card');
+    const blogCards     = document.querySelectorAll('.blog-card');
 
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // 1. Changer l'état actif des boutons
+            // Changer l'état actif des boutons
             filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // 2. Filtrer les cartes
+            // Filtrer les cartes
             const filterValue = btn.getAttribute('data-filter');
 
             blogCards.forEach(card => {
@@ -110,6 +113,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    });
+
+    // ────────────────────────────────────────────────
+    // 2. Gestion des flèches hint pour les sections scrollables
+    // ────────────────────────────────────────────────
+    const scrollables = [
+        document.getElementById('projetsGrid'),
+        document.getElementById('passionsGrid'),
+        document.querySelector('.timeline-items')   // ou '.timeline-container' si tu préfères
+    ];
+
+    scrollables.forEach(el => {
+        if (el) {
+            const checkScrollable = () => {
+                // Si le contenu rentre entièrement → pas besoin de flèche
+                if (el.scrollWidth <= el.clientWidth + 1) {  // +1 pour tolérance pixel
+                    el.parentElement?.classList.add('no-scroll-hint');
+                } else {
+                    el.parentElement?.classList.remove('no-scroll-hint');
+                }
+            };
+
+            // Vérification initiale
+            checkScrollable();
+
+            // Re-vérifier au redimensionnement (rotation téléphone, etc.)
+            window.addEventListener('resize', checkScrollable);
+
+            // Option bonus : re-vérifier après un léger délai (images qui chargent)
+            setTimeout(checkScrollable, 500);
+        }
     });
 });
 
@@ -182,7 +216,7 @@ const allPosts = [
         date: "12 Jan 2026",
         titre: "L'impact de l'IA sur l'analyse financière",
         resume: "Comment les nouveaux modèles de langage transforment la gestion...",
-        categorie: "finance",
+        categorie: "gestion",
         lien: "articles/ia-finance.html"
     },
     {
