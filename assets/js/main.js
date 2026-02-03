@@ -1,4 +1,4 @@
-// 1. BASE DE DONNÉES UNIQUE ( Timeline + Projets )
+// 1. BASE DE DONNÉES UNIQUE (Timeline + Projets)
 const siteData = {
     // Parcours
     'bepc': {
@@ -308,4 +308,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
