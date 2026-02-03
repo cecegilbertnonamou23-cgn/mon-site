@@ -11,7 +11,7 @@ const siteData = {
         sousTitre: "Nom de ton Lycée, Ville",
         description: "Spécialisation en [Ta Filière]. Mention Très Bien obtenue."
     },
-    // Projets (Rapports détaillés)
+    // Projets (Rapports détaillé)
     'proj-1': {
         titre: "Audit de Performance",
         sousTitre: "Finance & Analyse",
@@ -305,3 +305,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
