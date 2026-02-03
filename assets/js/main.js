@@ -118,22 +118,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // ────────────────────────────────────────────────
     // 2. Gestion des flèches hint pour les sections scrollables
     // ────────────────────────────────────────────────
-    const scrollables = [
-        document.getElementById('projetsGrid'),
-        document.getElementById('passionsGrid'),
-        document.querySelector('.timeline-items')  // ou .timeline-container si tu préfères
+const scrollables = [
+        { el: document.getElementById('projetsGrid'),   parentSelector: '.slider-wrapper' },
+        { el: document.getElementById('passionsGrid'),  parentSelector: '.slider-wrapper' },
+        { el: document.querySelector('.timeline-items'), parentSelector: '.timeline-container' }
     ];
 
-    scrollables.forEach(el => {
-        if (el) {
+    scrollables.forEach(item => {
+        const el = item.el;
+        const parent = el ? el.closest(item.parentSelector) : null;
+
+        if (el && parent) {
             const checkScrollable = () => {
-                if (el.scrollWidth <= el.clientWidth) {
-                    // Pas de scroll → cache flèche (via class ou style)
-                    el.parentElement.classList.add('no-scroll-hint');
+                if (el.scrollWidth <= el.clientWidth + 10) { // +10 pour tolérance pixel
+                    parent.classList.add('no-scroll-hint');
+                } else {
+                    parent.classList.remove('no-scroll-hint');
                 }
             };
+
             checkScrollable();
             window.addEventListener('resize', checkScrollable);
+            // Optionnel : recheck après images chargées
+            window.addEventListener('load', checkScrollable);
         }
     });
 });
