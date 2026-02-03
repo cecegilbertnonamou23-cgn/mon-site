@@ -473,33 +473,56 @@ ul {
     font-size: 28px; cursor: pointer;
 }
 
-/* RESPONSIVE : Mode Vertical (Mobile) */
+/* Override la media query existante pour timeline */
 @media (max-width: 768px) {
     .timeline-items {
-        flex-direction: column; /* Aligne les étapes l'une sous l'autre */
-        align-items: flex-start;
-        padding-left: 50px;
+        flex-direction: row;          /* Force horizontal, au lieu de column */
+        justify-content: flex-start;  /* Aligné à gauche pour scroll naturel */
+        padding: 0 20px;              /* Moins d'air aux extrémités */
+        gap: 20px;                    /* Espace entre items réduit */
     }
-    
+
     .timeline-line {
-        width: 8px; /* La barre devient verticale */
-        height: 100%;
-        left: 30px;
-        top: 0;
-        transform: none;
+        height: 6px;                  /* Légèrement plus fin sur mobile */
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .timeline-item {
-        flex-direction: row; /* Aligne texte et connecteur horizontalement */
-        width: 100%;
-        text-align: left;
-        margin: 20px 0 !important;
+        flex: 0 0 160px;              /* Largeur ~160-180px → 2 visibles sur ~360px écran */
+        min-width: 160px;
+        margin: 0;                    /* Pas de margin-top/bottom forcés */
     }
 
     .timeline-connector {
-        width: 30px;
-        height: 2px;
-        margin: 0 15px 0 0;
+        height: 20px;                 /* Connecteur plus court */
+        margin: 8px 0;
+    }
+
+    /* Améliore le fondu aux bords (déjà là, mais on affine) */
+    .timeline-container {
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    /* Ajout indication flèche droite (visible si scroll possible) */
+    .timeline-container::after {
+        content: "➡";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.8rem;
+        color: var(--accent-color);
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 2;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
     }
 }
 
@@ -727,6 +750,42 @@ ul {
 
 
 
+@media (max-width: 768px) {
+    .projets-grid {
+        gap: 20px;                    /* Réduit gap pour plus de contenu visible */
+        padding: 0 15px;              /* Moins de padding latéral */
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+
+    .projet-card {
+        flex: 0 0 260px;              /* Largeur adaptée (260-280px) */
+        scroll-snap-align: center;    /* CENTRE la carte active ! (au lieu de start) */
+        aspect-ratio: 1 / 1.1;        /* Presque square (légère hauteur pour texte) */
+        height: auto;
+    }
+
+    .card-image {
+        height: 140px;                /* Réduit hauteur image pour équilibrer */
+    }
+
+    /* Flèche hint (comme timeline) */
+    .slider-wrapper::after {          /* Ou .projets-grid::after si tu préfères */
+        content: "➡ Swipe pour plus";
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        background: rgba(30, 41, 59, 0.7);
+        padding: 6px 12px;
+        border-radius: 20px;
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 5;
+    }
+}
+
 
 
 /* ============================================================
@@ -778,14 +837,33 @@ ul {
     opacity: 0.7;
 }
 
-/* RESPONSIVE */
-@media (max-width: 600px) {
+
+@media (max-width: 768px) {
     .passions-grid {
-        grid-template-columns: 1fr; /* 1 seule colonne sur petit mobile */
+        gap: 20px;
+        padding: 0 15px;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
     }
-}
-.section-padding {
-    padding: 100px 0;
+
+    .passion-card {
+        flex: 0 0 220px;              /* Plus petit que projets pour varier */
+        scroll-snap-align: center;    /* Centrage parfait */
+        min-height: 220px;            /* Plus square-like */
+    }
+
+    /* Flèche hint */
+    .slider-wrapper::after {
+        content: "➡";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: var(--accent-color);
+        opacity: 0.7;
+        pointer-events: none;
+    }
 }
 
 
@@ -1130,6 +1208,9 @@ ul {
 
 
 
-
+.no-scroll-hint .slider-wrapper::after,
+.no-scroll-hint::after {
+    display: none;
+}
 
 
