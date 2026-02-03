@@ -121,33 +121,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollables = [
         document.getElementById('projetsGrid'),
         document.getElementById('passionsGrid'),
-        document.querySelector('.timeline-items')   // ou '.timeline-container' si tu préfères
+        document.querySelector('.timeline-items')  // ou .timeline-container si tu préfères
     ];
 
     scrollables.forEach(el => {
         if (el) {
             const checkScrollable = () => {
-                // Si le contenu rentre entièrement → pas besoin de flèche
-                if (el.scrollWidth <= el.clientWidth + 1) {  // +1 pour tolérance pixel
-                    el.parentElement?.classList.add('no-scroll-hint');
-                } else {
-                    el.parentElement?.classList.remove('no-scroll-hint');
+                if (el.scrollWidth <= el.clientWidth) {
+                    // Pas de scroll → cache flèche (via class ou style)
+                    el.parentElement.classList.add('no-scroll-hint');
                 }
             };
-
-            // Vérification initiale
             checkScrollable();
-
-            // Re-vérifier au redimensionnement (rotation téléphone, etc.)
             window.addEventListener('resize', checkScrollable);
-
-            // Option bonus : re-vérifier après un léger délai (images qui chargent)
-            setTimeout(checkScrollable, 500);
         }
     });
 });
-
-
 
 
 const observerOptions = {
