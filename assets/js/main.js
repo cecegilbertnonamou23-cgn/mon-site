@@ -11,7 +11,7 @@ const siteData = {
         sousTitre: "Nom de ton Lycée, Ville",
         description: "Spécialisation en [Ta Filière]. Mention Très Bien obtenue."
     },
-    // Projets (Rapports détaillé)
+    // Projets (Rapports détaillés)
     'proj-1': {
         titre: "Audit de Performance",
         sousTitre: "Finance & Analyse",
@@ -119,28 +119,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Gestion des flèches hint pour les sections scrollables
     // ────────────────────────────────────────────────
 const scrollables = [
-        { el: document.getElementById('projetsGrid'),   parentSelector: '.slider-wrapper' },
-        { el: document.getElementById('passionsGrid'),  parentSelector: '.slider-wrapper' },
-        { el: document.querySelector('.timeline-items'), parentSelector: '.timeline-container' }
+        { el: document.getElementById('projetsGrid'),   parent: document.querySelector('#projets .slider-wrapper') },
+        { el: document.getElementById('passionsGrid'),  parent: document.querySelector('#passions .slider-wrapper') },
+        { el: document.querySelector('.timeline-items'), parent: document.querySelector('.timeline-container') }
     ];
 
     scrollables.forEach(item => {
         const el = item.el;
-        const parent = el ? el.closest(item.parentSelector) : null;
+        const parent = item.parent;
 
         if (el && parent) {
             const checkScrollable = () => {
-                if (el.scrollWidth <= el.clientWidth + 10) { // +10 pour tolérance pixel
-                    parent.classList.add('no-scroll-hint');
-                } else {
+                const hasScroll = el.scrollWidth > el.clientWidth + 5; // tolérance
+                if (hasScroll) {
+                    parent.classList.add('scroll-hint');
                     parent.classList.remove('no-scroll-hint');
+                } else {
+                    parent.classList.remove('scroll-hint');
+                    parent.classList.add('no-scroll-hint');
                 }
             };
 
             checkScrollable();
             window.addEventListener('resize', checkScrollable);
-            // Optionnel : recheck après images chargées
             window.addEventListener('load', checkScrollable);
+            el.addEventListener('scroll', checkScrollable); // refresh si swipe
         }
     });
 });
@@ -305,4 +308,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
