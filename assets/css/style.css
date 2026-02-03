@@ -476,39 +476,55 @@ ul {
     font-size: 28px; cursor: pointer;
 }
 
-/* Override la media query existante pour timeline */
+/* Override la media query existante pour timeline – version complète */
 @media (max-width: 768px) {
     .timeline-items {
-        flex-direction: row;          /* Force horizontal, au lieu de column */
-        justify-content: flex-start;  /* Aligné à gauche pour scroll naturel */
-        padding: 0 20px;              /* Moins d'air aux extrémités */
-        gap: 20px;                    /* Espace entre items réduit */
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0 40px;              /* Plus d'espace latéral pour les flèches */
+        gap: 20px;
     }
 
     .timeline-line {
-        height: 6px;                  /* Légèrement plus fin sur mobile */
+        height: 6px;
         top: 50%;
         transform: translateY(-50%);
     }
 
     .timeline-item {
-        flex: 0 0 160px;              /* Largeur ~160-180px → 2 visibles sur ~360px écran */
+        flex: 0 0 160px;
         min-width: 160px;
-        margin: 0;                    /* Pas de margin-top/bottom forcés */
+        margin: 0;
     }
 
     .timeline-connector {
-        height: 20px;                 /* Connecteur plus court */
+        height: 20px;
         margin: 8px 0;
     }
 
-    /* Améliore le fondu aux bords (déjà là, mais on affine) */
+    /* Fondu aux bords – inchangé mais rappelé pour cohérence */
     .timeline-container {
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        position: relative;           /* Important pour positionner les ::after */
     }
 
-    /* Ajout indication flèche droite (visible si scroll possible) */
+    /* Flèche GAUCHE */
+    .timeline-container::before {
+        content: "⬅";
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.8rem;
+        color: var(--accent-color);
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 3;
+        animation: pulse 2s infinite;
+    }
+
+    /* Flèche DROITE */
     .timeline-container::after {
         content: "➡";
         position: absolute;
@@ -519,16 +535,21 @@ ul {
         color: var(--accent-color);
         opacity: 0.6;
         pointer-events: none;
-        z-index: 2;
+        z-index: 3;
         animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
         0%, 100% { opacity: 0.6; }
-        50% { opacity: 1; }
+        50%      { opacity: 0.9; }
+    }
+
+    /* Quand pas scrollable → on cache les deux flèches */
+    .no-scroll-hint.timeline-container::before,
+    .no-scroll-hint.timeline-container::after {
+        display: none;
     }
 }
-
 
 
 
@@ -755,37 +776,57 @@ ul {
 
 @media (max-width: 768px) {
     .projets-grid {
-        gap: 20px;                    /* Réduit gap pour plus de contenu visible */
-        padding: 0 15px;              /* Moins de padding latéral */
+        gap: 20px;
+        padding: 0 40px;              /* Espace pour flèches */
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
         mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
     }
 
     .projet-card {
-        flex: 0 0 260px;              /* Largeur adaptée (260-280px) */
-        scroll-snap-align: center;    /* CENTRE la carte active ! (au lieu de start) */
-        aspect-ratio: 1 / 1.1;        /* Presque square (légère hauteur pour texte) */
+        flex: 0 0 260px;
+        scroll-snap-align: center;
+        aspect-ratio: 1 / 1.1;
         height: auto;
     }
 
     .card-image {
-        height: 140px;                /* Réduit hauteur image pour équilibrer */
+        height: 140px;
     }
 
-    /* Flèche hint (comme timeline) */
-    .slider-wrapper::after {          /* Ou .projets-grid::after si tu préfères */
-        content: "➡ Swipe pour plus";
+    /* Flèche GAUCHE */
+    .slider-wrapper:has(.projets-grid)::before {
+        content: "⬅";
         position: absolute;
-        right: 20px;
-        bottom: 20px;
-        font-size: 1.2rem;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
         color: var(--accent-color);
-        background: rgba(30, 41, 59, 0.7);
-        padding: 6px 12px;
-        border-radius: 20px;
-        opacity: 0.8;
+        opacity: 0.7;
         pointer-events: none;
         z-index: 5;
+        animation: pulse 2.5s infinite;
+    }
+
+    /* Flèche DROITE */
+    .slider-wrapper:has(.projets-grid)::after {
+        content: "➡";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: var(--accent-color);
+        opacity: 0.7;
+        pointer-events: none;
+        z-index: 5;
+        animation: pulse 2.5s infinite;
+    }
+
+    /* Masquage quand pas de scroll */
+    .no-scroll-hint.slider-wrapper::before,
+    .no-scroll-hint.slider-wrapper::after {
+        display: none;
     }
 }
 
@@ -843,19 +884,34 @@ ul {
 @media (max-width: 768px) {
     .passions-grid {
         gap: 20px;
-        padding: 0 15px;
+        padding: 0 40px;              /* Espace pour flèches */
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
         mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
     }
 
     .passion-card {
-        flex: 0 0 220px;              /* Plus petit que projets pour varier */
-        scroll-snap-align: center;    /* Centrage parfait */
-        min-height: 220px;            /* Plus square-like */
+        flex: 0 0 220px;
+        scroll-snap-align: center;
+        min-height: 220px;
     }
 
-    /* Flèche hint */
-    .slider-wrapper::after {
+    /* Flèche GAUCHE */
+    .slider-wrapper:has(.passions-grid)::before {
+        content: "⬅";
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: var(--accent-color);
+        opacity: 0.7;
+        pointer-events: none;
+        z-index: 5;
+        animation: pulse 2.5s infinite;
+    }
+
+    /* Flèche DROITE */
+    .slider-wrapper:has(.passions-grid)::after {
         content: "➡";
         position: absolute;
         right: 15px;
@@ -865,6 +921,14 @@ ul {
         color: var(--accent-color);
         opacity: 0.7;
         pointer-events: none;
+        z-index: 5;
+        animation: pulse 2.5s infinite;
+    }
+
+    /* Masquage quand pas de scroll */
+    .no-scroll-hint.slider-wrapper::before,
+    .no-scroll-hint.slider-wrapper::after {
+        display: none;
     }
 }
 
@@ -1210,9 +1274,12 @@ ul {
 
 
 
-.no-scroll-hint .slider-wrapper::after,
-.no-scroll-hint::after {
-    display: none;
+/* Masquage des flèches quand le contenu ne dépasse pas */
+.no-scroll-hint::before,
+.no-scroll-hint::after,
+.no-scroll-hint .slider-wrapper::before,
+.no-scroll-hint .slider-wrapper::after {
+    display: none !important;
 }
 
 
