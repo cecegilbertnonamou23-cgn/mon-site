@@ -1,4 +1,4 @@
-/* ============================================================
+/* ===========================================================
    1. IMPORTATION DES POLICES (Le Duo Autoritaire)
    ============================================================ */
 /* Import de Inter (Titres) et Plus Jakarta Sans (Corps) via Google Fonts */
@@ -1281,5 +1281,6 @@ ul {
 .no-scroll-hint .slider-wrapper::after {
     display: none !important;
 }
+
 
 
